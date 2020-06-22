@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -22,6 +23,11 @@ namespace ThomBraExtensions
             string sTemp = Regex.Replace(str, "( ){2,}", " ");
             return sTemp.Split(new char[] { ' ' }).Length; //, ',', '.', '?', '!' 
 
+        }
+
+        public static string Anagram(this string str)
+        {
+            return new string(str.ToCharArray().OrderBy(x => Guid.NewGuid()).ToArray()).ToUpper();
         }
     }
 }
