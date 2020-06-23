@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -25,10 +26,20 @@ namespace ThomBraExtensions
 
         }
 
-        public static string Anagram(this string str)
+        public static string Anagram(this String str)
         {
             //New comment
             return new string(str.ToCharArray().OrderBy(x => Guid.NewGuid()).ToArray()).ToUpper();
+        }
+
+        public static int[] GetAscii(this String str)
+        {
+            int[] asciiArr = new int[str.Length];
+            for (int i = 0; i < str.Length; i++)
+            {
+                asciiArr[i] = (int)str[i];
+            }
+            return asciiArr;
         }
     }
 }
