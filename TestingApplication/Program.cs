@@ -7,8 +7,12 @@ namespace TestingApplication
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Thomas Brausendorf".Anagram());
 
+            //Console.WriteLine("Hello World".GetAscii());
+            foreach(int x in "Hello World".GetAscii())
+            {
+                Console.WriteLine(x);
+            }
         }
     }
 }
