@@ -7,11 +7,8 @@ namespace TestingApplication
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!".ReverseString());
+            Console.WriteLine("Thomas Brausendorf".Anagram());
 
-            Console.WriteLine("Hello World!".CountWords());
-            Console.WriteLine("Hello!   World!".CountWords());
-            Console.WriteLine("Hello, World!".CountWords());
         }
     }
 }
