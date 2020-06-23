@@ -27,6 +27,7 @@ namespace ThomBraExtensions
 
         public static string Anagram(this string str)
         {
+            //New comment
             return new string(str.ToCharArray().OrderBy(x => Guid.NewGuid()).ToArray()).ToUpper();
         }
     }
