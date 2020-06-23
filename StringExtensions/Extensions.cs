@@ -41,5 +41,17 @@ namespace ThomBraExtensions
             }
             return asciiArr;
         }
+
+        public static bool IsPallindrome(this String str)
+        {
+            if (str.ToLower().Equals(str.ToLower().ReverseString()))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
