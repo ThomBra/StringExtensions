@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -55,7 +56,7 @@ namespace ThomBraExtensions
             }
         }
 
-        public static string ToMorseCode(this String str)
+        public static string ToMorseCode(this String str, bool translateSpace = true)
         {
             StringBuilder morseStringBuilder = new StringBuilder();
 
@@ -104,7 +105,7 @@ namespace ThomBraExtensions
                 {';',"-.-.-."},
                 {' ',"-...-"},
                 {'/',"-..-."},
-                {'"',".-..-."},
+                {'"',".-..-."}
             };
 
             string tempMorseStr = String.Empty;
@@ -113,7 +114,21 @@ namespace ThomBraExtensions
                 //if there is a corresponding character-Key in dictionary
                 if (morseCharacters.TryGetValue(c, out tempMorseStr))
                 {
-                    morseStringBuilder.Append(tempMorseStr);
+                    if (c != ' ')
+                    {
+                        morseStringBuilder.Append(tempMorseStr);
+                    }
+                    else
+                    {
+                        if (translateSpace)
+                        {
+                            morseStringBuilder.Append(tempMorseStr);
+                        }
+                        else
+                        {
+                            morseStringBuilder.Append(' ');
+                        }
+                    }
                 }
                 // if no corresponding key then concat unchanged input character
                 else
@@ -128,8 +143,9 @@ namespace ThomBraExtensions
         {
             int freq = 500;
             int timeUnitMs = 100;
+            Stopwatch sw = new Stopwatch();
 
-            foreach (char c in str.ToMorseCode())
+            foreach (char c in str.ToMorseCode(false))
             {
                 if (c == '.')
                 {
@@ -140,12 +156,18 @@ namespace ThomBraExtensions
                     Console.Beep(freq, timeUnitMs * 3);
                 }
                 //Pause between two symbols (. or -) (1* timeUnitMs)
-                //Console.Beep(37, timeUnitMs);
+                sw.Start();
+                while (sw.ElapsedMilliseconds < timeUnitMs) { }
+                sw.Stop();
+                sw.Reset();
 
                 //Pause between two words (7* timeUnitMs)
                 if (c == ' ')
-                {
-                    //Console.Beep(37, timeUnitMs * 7);
+                {                       
+                    sw.Start();
+                    while (sw.ElapsedMilliseconds < timeUnitMs * 7) { }
+                    sw.Stop();
+                    sw.Reset();
                 }
             }
         }
