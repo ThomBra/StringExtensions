@@ -14,6 +14,7 @@ namespace TestingApplication
             //Testing .ToMorseCode-Method
             string morseSourceText = "Hello World!";
             Console.WriteLine("Morse-Code: {0}", morseSourceText.ToMorseCode());
+            morseSourceText.ToMorseCodeSound();
         }
     }
 }

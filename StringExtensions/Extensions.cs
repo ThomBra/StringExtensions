@@ -123,5 +123,31 @@ namespace ThomBraExtensions
             }
             return morseStringBuilder.ToString();
         }
+
+        public static void ToMorseCodeSound(this String str)
+        {
+            int freq = 500;
+            int timeUnitMs = 100;
+
+            foreach (char c in str.ToMorseCode())
+            {
+                if (c == '.')
+                {
+                    Console.Beep(freq, timeUnitMs);
+                }
+                else if(c == '-')
+                {
+                    Console.Beep(freq, timeUnitMs * 3);
+                }
+                //Pause between two symbols (. or -) (1* timeUnitMs)
+                //Console.Beep(37, timeUnitMs);
+
+                //Pause between two words (7* timeUnitMs)
+                if (c == ' ')
+                {
+                    //Console.Beep(37, timeUnitMs * 7);
+                }
+            }
+        }
     }
 }
